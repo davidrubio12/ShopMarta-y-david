@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="d-flex align-items-center mb-3" th:fragment="ordenation(orderOptions,orderBy,orderDir,pageSize,pageSizeOptions)">
+    <form method="get" class="d-flex align-items-center">
+        <label class="me-2">Ordenar por:</label>
+        <select class="form-select me-3" style="width: 150px;" name="orderBy">
+            <option th:each="orderOption:${orderOptions}" th:selected="${orderBy==orderOption.getKey()}" th:value="${orderOption.getKey()}" th:text="${orderOption.getValue()}" selected>Campo</option>
+<!--            <option th:selected="${orderBy=='name'}" value="name">Nombre</option>-->
+<!--            <option th:selected="${orderBy=='description'}" value="description">Descripción</option>-->
+
+        </select>
+
+        <label class="me-2">En sentido:</label>
+        <select class="form-select me-3" style="width: 150px;" name="orderDir">
+            <option th:selected="${orderDir=='asc'}" value="asc" selected>Ascendente</option>
+            <option th:selected="${orderDir=='desc'}" value="desc">Descendente</option>
+        </select>
+
+        <label class="me-2">En cada página:</label>
+        <select class="form-select me-3" style="width: 80px;" name="pageSize" th:remove="all-but-first">
+            <option th:each="size:${pageSizeOptions}" th:selected="${pageSize==size}" th:value="${size}" selected th:text="${size}">5</option>
+            <option th:selected="${pageSize==10}" value="10">10</option>
+            <option th:selected="${pageSize==20}" value="20">20</option>
+        </select>
+
+        <button class="btn btn-primary" type="submit">Aceptar</button>
+    </form>
+</div>
+
+</body>
+</html>

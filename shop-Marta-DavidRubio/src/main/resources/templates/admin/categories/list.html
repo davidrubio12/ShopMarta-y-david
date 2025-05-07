@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Administración de Categorias</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div style="background-color: black; color: white; padding: 10px; margin-bottom: 20px;">
+        <h2>Administración de categorías</h2>
+    </div>
+
+
+    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+        <p th:text="${successMessage}"></p>
+    </div>
+    <div th:if="${globalError}" class="alert alert-danger" role="alert">
+        <p th:text="${globalError}"></p>
+    </div>
+
+
+
+
+    <div style="margin-bottom: 20px;">
+        <a th:href="@{/admin/categories/new}" class="btn btn-primary">Crear nueva categoría</a>
+    </div>
+
+    <div th:replace="~{/admin/adminFragmentOrder::ordenation(${orderFields},${orderBy},${orderDir},${categories.getSize()},${pageSizeOptions})}"></div>
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Acciones</th>
+            <th scope="col">Editar Categoría</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category : ${categories}">
+            <td th:text="${category.id}"></td>
+            <td th:text="${category.name}"></td>
+            <td th:text="${category.description}"></td>
+            <td>
+                <a th:href="@{|/admin/categories/delete/${category.id}|}" class="btn btn-danger">
+                    Eliminar
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/admin/categories/edit/{id}(id=${category.id})}"
+                   class="btn btn-sm btn-primary">Editar</a>
+
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:replace="~{/admin/adminFragmentPagination::pagination(page=${categories}, url='/admin/categories/list',orderBy=${orderBy},orderDir=${orderDir})}"></div>
+
+
+    <footer style="background-color: black; color: white; padding: 10px;">
+        <div class="d-flex justify-content-center">
+            <p style="color:white;">Copyright@ShopDavidYMarta</p>
+        </div>
+        <div style="display: flex; gap: 20px; padding: 10px;">
+            <a th:href="@{/admin/products/list}" style="text-decoration: none; color: #4CAF50; font-weight: bold;">Administración
+                de Productos</a>
+            <a th:href="@{/}" style="text-decoration: none; color: #4CAF50; font-weight: bold;">Home</a>
+            <a th:href="@{/admin}" style="text-decoration: none; color: #4CAF50; font-weight: bold;">Administración</a>
+
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

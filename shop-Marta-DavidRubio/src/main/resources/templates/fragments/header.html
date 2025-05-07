@@ -1,0 +1,56 @@
+
+<header th:fragment="header">
+    <div class="logo">
+        <a th:href = "@{/}">
+            <img th:src="@{/images/logo2.webp}" alt="Logo" class="logo-img"></a>
+        <a th:href = "@{/}"> Magic Emporium</a>
+    </div>
+
+    <div class="login__box-input">
+        <input type="email" required class="login__input" id="login-email" placeholder="Usuario">
+        <label for="login-email" class="login__label"></label>
+    </div>
+
+    <div class="login__box">
+        <i class="ri-lock-2-line login__icon"></i>
+        <div class="login__box-input">
+            <input type="password" required class="login__input" id="login-pass" placeholder="Contraseña">
+            <label for="login-pass" class="login__label"></label>
+            <i class="ri-eye-off-line login__eye" id="login-eye"></i>
+        </div>
+    </div>
+
+    <div class="forgotPassword">
+        <a href="#" class="login__forgot">¿Olvidaste la contraseña?</a>
+    </div>
+
+    <div class="btn" style="--clr: #78fd61; --clr-glow: #78fd61">
+        <a href="#">Iniciar Sesión</a>
+    </div>
+    <div class="btn" style="--clr: #2dd9fe; --clr-glow: #00a3d5">
+        <a href="#">Registrarse</a>
+    </div>
+    <div class="container d-flex align-items-center justify-content-between">
+        <a th:href="@{/cart/showCart}" class="btn btn-outline-light cart-button d-flex align-items-center">
+            <i class="bi bi-cart cart-icon"></i>
+            <img th:src="@{/images/carrito.png}" alt="Carrito" class="carrito-img">
+
+        </a>
+    </div>
+
+    <label for="menu-toggle" class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+    <input type="checkbox" id="menu-toggle">
+    <div class="menu">
+        <a href="shop">Productos</a>
+        <a href="#">Tendencias</a>
+        <a href="#">Ofertas</a>
+        <a href="#">Contacto</a>
+    </div>
+
+
+</header>
+
